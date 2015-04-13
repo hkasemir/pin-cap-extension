@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>test</title>
+	<script type="text/javascript">
+		function capitalize(usertext){
+        return usertext.toUpperCase();
+      }
+
+      function main(){
+      	var userTxt = document.getElementById("input");
+      	var capText = capitalize(userTxt.value);
+      	document.getElementById("output").innerHTML = capText;
+      }
+
+
+
+	</script>
+</head>
+<body>
+	<form>
+		Input: <br>
+		<input type="text" id="input">
+		Capitalized: <br>
+		<div id="output"></div>
+		<button onclick="main()">Go</button>
+	</form>
+
+</body>
+</html>
