@@ -1,12 +1,10 @@
-function capitalize(usertext){
-  return usertext.toUpperCase();
-}
 
-function main(){
-	var userTxt = document.getElementById("input");
-	var capText = capitalize(userTxt.value);
-	document.getElementById("output").innerHTML = capText;
-}
 
-var reference = document.getElementById("input");
-reference.onchange = main;
+//takes screenshot of current tab and writes it into the popup.html file
+
+var imageUrl
+chrome.tabs.captureVisibleTab(function(dataURL) {
+  var capture = "<image src=\"" + dataURL + "\" />";
+	document.getElementById("image").innerHTML = capture;
+	imageUrl = dataUrl;
+});
