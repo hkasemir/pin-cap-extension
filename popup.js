@@ -1,7 +1,12 @@
-var userTxt = document.getElementById("userTxt");
+function capitalize(usertext){
+  return usertext.toUpperCase();
+}
 
-var capTxt = userTxt.toUpperCase();
+function main(){
+	var userTxt = document.getElementById("input");
+	var capText = capitalize(userTxt.value);
+	document.getElementById("output").innerHTML = capText;
+}
 
-var out = "<p>" + capTxt + "</p>";
-
-document.getElementById("output").innerHTML = out;
+var reference = document.getElementById("input");
+reference.onchange = main;

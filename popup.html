@@ -15,20 +15,12 @@
         width: 400px;
       }
     </style>
-    <script src="popup.js"></script>
-    <script type="text/javascript">
-      // var userTxt = document.getElementById("userTxt");
-      onload = function(){
-      var capTxt = "test".toUpperCase();
-      var out = "<p>" + capTxt + "</p>";
-      document.getElementById("output").innerHTML = out;
-      }
-    </script>
   </head>
-  <body onload="script">
+  <body>
     <p>This is a test</p>
-    <input type="text" name="userTxt" />
+    <input type="text" id="input" />
     <div id="output"></div>
+    <script src="popup.js"></script>
   </body>
 </html>
 
