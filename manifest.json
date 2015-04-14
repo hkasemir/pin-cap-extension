@@ -10,10 +10,18 @@
     "default_popup": "popup.html",
     "default_title": "Click here!"
   },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",
-    "desktopCapture",
-    "tabs"
+    "<all_urls>",
+    "tabs",
+    "https://www.flickr.com/services/oauth/request_token",
+    "https://www.flickr.com/services/oauth/authorize",
+    "https://www.flickr.com/services/oauth/access_token"
   ]
 }
