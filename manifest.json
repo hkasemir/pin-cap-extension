@@ -12,7 +12,8 @@
   },
 
   "background": {
-    "scripts": ["background.js"]
+    // "scripts": ["background.js"],
+    "page": "background.html"
   },
 
   "permissions": [
@@ -23,5 +24,16 @@
     "https://www.flickr.com/services/oauth/request_token",
     "https://www.flickr.com/services/oauth/authorize",
     "https://www.flickr.com/services/oauth/access_token"
+  ],
+
+  "web_accessible_resources": [
+    "chrome_ex_oauth.js",
+    "chrome_ex_oauth.html",
+    "chrome_ex_oauthsimple.js",
+    "onload.js"
   ]
+
+
+
+
 }

@@ -6,7 +6,34 @@ var imageUrl
 chrome.tabs.captureVisibleTab(function(dataURL) {
   var capture = "<image src=\"" + dataURL + "\" />";
 	document.getElementById("image").innerHTML = capture;
+	imageUrl = dataURL;
 });
+
+
+var bgPage = chrome.extension.getBackgroundPage();
+
+
+bgPage.oauth.authorize(function() {
+	console.log("it ran");
+  // ... Ready to fetch private data ...
+});
+
+
+
+function onAuthorized() {
+  var method = 'POST';
+  var url = 'imageUrl';
+  var params = {'alt': 'json'};
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(data) {
+    callback(xhr, data);
+  };
+  xhr.open(method, url + '?' + stringify(params), true);
+  xhr.setRequestHeader('GData-Version', '3.0');
+  xhr.setRequestHeader('Content-Type', 'application/atom+xml');
+  xhr.setRequestHeader('Authorization', oauth.getAuthorizationHeader(url, method, params));
+};
 
 
 //register the app with flickr for oauth tokens
@@ -29,3 +56,9 @@ chrome.tabs.captureVisibleTab(function(dataURL) {
 // &oauth_version=1.0
 // &oauth_token=72157626737672178-022bbd2f4c2f3432
 // &oauth_signature=UD9TGXzrvLIb0Ar5ynqvzatM58U%3D
+
+
+
+
+
+
