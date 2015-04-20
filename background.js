@@ -1,5 +1,3 @@
-
-
 var oauth = ChromeExOAuth.initBackgroundPage({
   'request_url': "https://www.flickr.com/services/oauth/request_token",
   'authorize_url': "https://www.flickr.com/services/oauth/authorize",
@@ -9,5 +7,7 @@ var oauth = ChromeExOAuth.initBackgroundPage({
   'perms': "write",
   'app_name': "FlickrCap"
 });
+
+
 
 
