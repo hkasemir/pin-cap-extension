@@ -15,21 +15,42 @@ var bgPage = chrome.extension.getBackgroundPage();
 
 bgPage.oauth.authorize(onAuthorized);
 
+function createSignature(secret, args) {
+  var sortedArgs = args.sort();
+  console.log(secret + args.join('').replace(/=/g, ''))
+  console.log(bgPage.md5(secret + args.join('').replace(/=/g, '')))
+  return bgPage.md5(secret + args.join('').replace(/=/g, ''));
+}
+
 
 function upload(uploadArgs){
-  var method = 'POST';
-  var url = 'https://up.flickr.com/services/upload/';
-  // var params = {'alt': 'json'};
   var xhr = new XMLHttpRequest();
-
-  var secret = localStorage["oauth_token_secretundefined"];
-  var apiSig = bgPage.md5(secret);
-  url += apiSig;
+  var secret = '08223f95d11cb34d';
+  var args = [];
+  args.push('api_key=' + uploadArgs['api_key']);
+  // args.push('auth_token=' + uploadArgs['auth_token']);
+  args.push('perms=write');
+  var apiSig = createSignature(secret, args)
+  args.push('api_sig=' + apiSig);
+  var url = 'https://up.flickr.com/services/upload/';
 
   xhr.open('POST', url, true);
-  xhr.send(uploadArgs);
-  debugger
+
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+  // xhr.setRequestHeader("Content-length", args.join('&').length);
+  // xhr.setRequestHeader("Connection", "close");
+
+
+  xhr.onreadystatechange = function()
+    {
+            console.log(xhr.responseText);
+            console.log(xhr.status);
+    }; 
+
+
+  xhr.send(args.join('&'));
 }
+
 
 
 function onAuthorized() {
@@ -53,7 +74,9 @@ function onAuthorized() {
     'auth_token': localStorage["oauth_tokenundefined"],
     'api_key': "ffe89167fc96586965aaf5186c1440cb"
   };
-  debugger;
+
+ // document.getElementById('upload-button').onClick(upload(uploadArgs))
+
   upload(uploadArgs);
 };
 
