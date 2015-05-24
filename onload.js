@@ -3,5 +3,7 @@
 // found in the LICENSE file.
 
 window.onload = function() {
+	console.log('onload started');
   ChromeExOAuth.initCallbackPage();
+  console.log('onload done');
 }
