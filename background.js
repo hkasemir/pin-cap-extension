@@ -1,3 +1,5 @@
+console.log('background js started');
+
 var oauth = ChromeExOAuth.initBackgroundPage({
   'request_url': "https://www.flickr.com/services/oauth/request_token",
   'authorize_url': "https://www.flickr.com/services/oauth/authorize",
@@ -8,6 +10,6 @@ var oauth = ChromeExOAuth.initBackgroundPage({
   'app_name': "FlickrCap"
 });
 
-
+console.log('background js done');
 
 
